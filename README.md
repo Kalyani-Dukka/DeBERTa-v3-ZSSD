@@ -14,7 +14,7 @@ This script preprocesses tweet data from the `raw_train_all_onecol.csv` file for
 6. Split hashtags/mentions using `wordninja`.
 7. Lowercased and cleaned tokens for modeling.
 
-# Subtask A - Stance Detection (Text Representation)
+# Subtask A - Target Based ZSSD
 
 ## Overview
 This repository implements a stance detection model for SemEval-style Subtask A using `microsoft/deberta-v3-base`. It focuses on classifying stances (`FAVOR`, `AGAINST`, `NONE`) based on a combination of `Text` and `Target`.
@@ -33,8 +33,25 @@ This repository implements a stance detection model for SemEval-style Subtask A 
 - Trained model saved at: `./saved_model`
 - Classification reports and predictions saved in: `./results`
 
-## Note
-Ensure the correct folder structure and file paths are used as shown in the code.
+# Subtask B - Domain based ZSSD
+
+## Overview
+This repository implements domain generalization for stance detection using the `microsoft/deberta-v3-base` model. The goal is to generalize across domains by training on 7 domains and testing on the held-out 8th.
+
+## Key Features
+- **Model:** A custom `DebertaClassifier` that separately encodes `Text` and `Target` representations using attention masks.
+- **Training Strategy:** Uses only entries where `In Use == 1` to avoid target leakage across domains.
+- **Dataset:** For each domain, `raw_train_all_onecol.csv` and `raw_val_all_onecol.csv` are used. Test files are evaluated separately.
+- **Evaluation:** Computes Accuracy, Macro F1, and Weighted F1. Classification reports and predictions are saved for all test domains.
+
+## Output
+- Model checkpoint: `./saved_model`
+- Reports & predictions: `./results/`
+
+## Notes
+Ensure proper domain folder structure under `subtaskB/`. During training, overlapping targets with the test domain are masked via the `In Use` column.
+
+
 
 
 
