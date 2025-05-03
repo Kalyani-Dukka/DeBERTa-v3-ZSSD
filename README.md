@@ -14,19 +14,6 @@ This script preprocesses tweet data from the `raw_train_all_onecol.csv` file for
 6. Split hashtags/mentions using `wordninja`.
 7. Lowercased and cleaned tokens for modeling.
 
-## 📄 Input
-
-CSV file with `Text` and `Target 1` columns.
-
-## 📤 Output
-
-Same file with cleaned `Text` and preserved `Ori Text`.
-
-## 🛠 Requirements
-
-Install dependencies:
-```bash
-pip install pandas contractions wordninja
 
 
 3. For the 'subtaskB' train and val sets, we need to filter the 'In Use' column during actual training, using only the entries where 'In Use' == 1. This is because, during data splitting for subtaskB, one domain is chosen as the test set, and the remaining seven domains may have targets that overlap with the test domain. These overlapping targets need to be masked. The 'in use' column is used for this masking.
