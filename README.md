@@ -14,6 +14,28 @@ This script preprocesses tweet data from the `raw_train_all_onecol.csv` file for
 6. Split hashtags/mentions using `wordninja`.
 7. Lowercased and cleaned tokens for modeling.
 
+# Subtask A - Stance Detection (Text Representation)
+
+## Overview
+This repository implements a stance detection model for SemEval-style Subtask A using `microsoft/deberta-v3-base`. It focuses on classifying stances (`FAVOR`, `AGAINST`, `NONE`) based on a combination of `Text` and `Target`.
+
+## Training
+- Dataset is loaded using a custom `StanceDataset` class that tokenizes (text, target) pairs.
+- The `DebertaClassifier` computes separate representations for text and topic by adjusting attention masks.
+- Concatenated embeddings are passed through linear layers for final classification.
+
+## Evaluation
+- The model is evaluated on three test domains: `claim`, `noun_phrase`, and `mixed`.
+- Accuracy, macro F1, and weighted F1 scores are reported.
+- A full classification report and predictions are saved for each test set.
+
+## Output
+- Trained model saved at: `./saved_model`
+- Classification reports and predictions saved in: `./results`
+
+## Note
+Ensure the correct folder structure and file paths are used as shown in the code.
+
 
 
 3. For the 'subtaskB' train and val sets, we need to filter the 'In Use' column during actual training, using only the entries where 'In Use' == 1. This is because, during data splitting for subtaskB, one domain is chosen as the test set, and the remaining seven domains may have targets that overlap with the test domain. These overlapping targets need to be masked. The 'in use' column is used for this masking.
