@@ -1,7 +1,6 @@
 # ZSSD through Disentangled Attention: A DeBERTa v3
 This repository includes code for the DeBERTa v3 model , finetuned on EZSTANCE Dataset
-
-# Text Preprocessing for ezStance (Subtask A)
+**Text Preprocessing for ezStance (Subtask A)**
 
 This script preprocesses tweet data from the `raw_train_all_onecol.csv` file for stance detection tasks.
 
